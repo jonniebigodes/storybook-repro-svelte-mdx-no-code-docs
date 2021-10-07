@@ -1,0 +1,40 @@
+import { Canvas, Meta, Story } from "@storybook/addon-docs";
+
+import Button from "./Button.svelte";
+
+<Meta title="MDX/ButtonExample" component={Button} />
+
+## With Default render function
+
+<Canvas>
+  <Story
+    name="Button with render function"
+    args={{
+      primary: true,
+      label: "Boop",
+    }}
+    render={(args) => ({
+      Component: Button,
+      props: args,
+    })}
+  />
+</Canvas>
+
+## Without Default render function
+
+export const Template = (args) => ({
+  Component: Button,
+  props: args,
+});
+
+<Canvas>
+  <Story
+    name="Button without render function"
+    args={{
+      primary: true,
+      label: "Boop",
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
